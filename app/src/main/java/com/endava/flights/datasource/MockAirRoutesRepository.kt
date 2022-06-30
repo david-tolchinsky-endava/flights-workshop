@@ -15,7 +15,7 @@ class MockAirRoutesRepository : AirRoutesRepository {
         val DF = AirRoute("BUE-MEX", "Buenos Aires", "Mexico DF", Money(1200, "USD"))
     }
 
-    override fun getAirRoutes(from: String, to: String): List<AirRoute> {
+    override suspend fun getAirRoutes(from: String, to: String): List<AirRoute> {
         return listOf(MADRID, MIAMI, NEW_YORK, CALI, SANTIAGO, RIO, DF)
     }
 }

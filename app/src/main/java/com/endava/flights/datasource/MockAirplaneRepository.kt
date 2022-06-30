@@ -114,7 +114,7 @@ class MockAirplaneRepository : AirplaneRepository {
 
     }
 
-    override fun getAirplanes(): List<Airplane> {
+    override suspend fun getAirplanes(): List<Airplane> {
         return listOf(AIRBUS_A350, BOEING_787, AIRBUS_A330, BOEING_737)
     }
 }

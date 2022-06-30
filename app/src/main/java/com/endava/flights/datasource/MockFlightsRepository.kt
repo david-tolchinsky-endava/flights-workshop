@@ -16,7 +16,7 @@ import java.util.*
 
 class MockFlightsRepository : FlightsRepository {
 
-    override fun getFlights(): List<Flight> {
+    override suspend fun getFlights(): List<Flight> {
         return listOf(
             Flight(
                 "ARG1325",
