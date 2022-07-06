@@ -23,8 +23,10 @@ class MainFlightActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val viewModel = RouteViewModel()
-        viewModel.bsAsRoutes.observe(this) {
-            Log.d("Main", it.joinToString { "," })
+        viewModel.bsAsRoutesLD.observe(this) {
+            it?.forEach {airRoute ->
+                Log.i("BsAsRoutes", "${airRoute.from} -> ${airRoute.to}")
+            }
         }
         viewModel.fetchBsAsRoutes()
         super.onCreate(savedInstanceState)
