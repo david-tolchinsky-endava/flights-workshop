@@ -1,6 +1,9 @@
 package com.endava.flights
 
+import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
+import com.endava.flights.viewmodel.RouteViewModel
 
 /**
  *
@@ -18,5 +21,13 @@ import androidx.fragment.app.FragmentActivity
  */
 class MainFlightActivity : FragmentActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val viewModel = RouteViewModel()
+        viewModel.bsAsRoutes.observe(this) {
+            Log.d("Main", it.joinToString { "," })
+        }
+        viewModel.fetchBsAsRoutes()
+        super.onCreate(savedInstanceState)
+    }
 
 }
