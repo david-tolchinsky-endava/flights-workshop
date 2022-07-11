@@ -9,13 +9,15 @@ import com.endava.flights.viewmodel.AirRouteViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class AirRouteViewModelUnitTest {
-    private var airRouteViewModel: AirRouteViewModel? = null
+    private var airRouteViewModel = AirRouteViewModel(
+        MockBsAsAirRouteUseCase(),
+        MockCheapestAirRouteUseCase()
+    )
 
     @get:Rule
     var coroutineTestRule = MainCoroutineTestRule()
@@ -23,18 +25,10 @@ class AirRouteViewModelUnitTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Before
-    fun setup() {
-        airRouteViewModel = AirRouteViewModel(
-            MockBsAsAirRouteUseCase(),
-            MockCheapestAirRouteUseCase()
-        )
-    }
-
     @Test
     fun fetchBsAsRoutesShouldStoreFiveRoutesInLiveDataTest() = runTest {
-        airRouteViewModel?.fetchBsAsRoutes()
-        assertEquals(5, airRouteViewModel?.bsAsRoutesLD?.value?.size)
+        airRouteViewModel.fetchBsAsRoutes()
+        assertEquals(5, airRouteViewModel.bsAsRoutesLD.value?.size)
     }
 
     @Test
@@ -45,10 +39,10 @@ class AirRouteViewModelUnitTest {
             "Santiago",
             Money(190, "USD")
         )
-        airRouteViewModel?.getCheapestAirRoute()
+        airRouteViewModel.getCheapestAirRoute()
         assertEquals(
             expectedCheapestAirRoute,
-            airRouteViewModel?.cheapestRouteLD?.value)
+            airRouteViewModel.cheapestRouteLD.value)
     }
 }
 

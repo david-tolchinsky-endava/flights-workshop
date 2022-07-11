@@ -4,7 +4,6 @@ import com.endava.flights.datasource.AirRoutesRepositoryImpl
 import com.endava.flights.model.AirRoute
 import com.endava.flights.model.Money
 import com.endava.flights.usecase.CheapestRouteUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
@@ -13,7 +12,7 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class CheapestRoutesUseCaseUnitTest {
     val cheapestRouteUseCase = CheapestRouteUseCase(
-        airRouteRepository = AirRoutesRepositoryImpl(Dispatchers.IO)
+        airRouteRepository = AirRoutesRepositoryImpl()
     )
 
     @Test
