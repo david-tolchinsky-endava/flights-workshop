@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.endava.flights.model.AirRoute
 import com.endava.flights.model.Money
 import com.endava.flights.usecase.BsAsAirRoutesUseCase
+import com.endava.flights.usecase.CheapestRouteUseCase
 import com.endava.flights.viewmodel.AirRouteViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -24,13 +25,30 @@ class AirRouteViewModelUnitTest {
 
     @Before
     fun setup() {
-        airRouteViewModel = AirRouteViewModel(MockBsAsAirRouteUseCase())
+        airRouteViewModel = AirRouteViewModel(
+            MockBsAsAirRouteUseCase(),
+            MockCheapestAirRoute()
+        )
     }
 
     @Test
     fun fetchBsAsRoutesShouldStoreFiveRoutesInLiveDataTest() = runTest {
         airRouteViewModel?.fetchBsAsRoutes()
         assertEquals(5, airRouteViewModel?.bsAsRoutesLD?.value?.size)
+    }
+
+    @Test
+    fun getCheapestAirRouteTest() = runTest {
+        val expectedCheapestAirRoute = AirRoute(
+            "EZE-SCL",
+            "Buenos Aires",
+            "Santiago",
+            Money(190, "USD")
+        )
+        airRouteViewModel?.getCheapestAirRoute()
+        assertEquals(
+            expectedCheapestAirRoute,
+            airRouteViewModel?.cheapestRouteLD?.value)
     }
 }
 
@@ -42,5 +60,16 @@ class MockBsAsAirRouteUseCase: BsAsAirRoutesUseCase() {
             AirRoute("EZE-SCL", "Buenos Aires", "Santiago", Money(190, "USD")),
             AirRoute("BUE-RDJ", "Buenos Aires", "Rio De Janeiro", Money(400, "USD")),
             AirRoute("BUE-MEX", "Buenos Aires", "Mexico DF", Money(1200, "USD")))
+    }
+}
+
+class MockCheapestAirRoute: CheapestRouteUseCase() {
+    override suspend fun invoke(): AirRoute {
+        return AirRoute(
+            "EZE-SCL",
+            "Buenos Aires",
+            "Santiago",
+            Money(190, "USD")
+        )
     }
 }

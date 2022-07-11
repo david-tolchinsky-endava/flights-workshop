@@ -29,7 +29,13 @@ class MainFlightActivity : FragmentActivity() {
                 Log.i("BsAsRoutes", "${airRoute.from} -> ${airRoute.to}")
             }
         }
+        viewModel.cheapestRouteLD.observe(this) { cheapestAirRoute ->
+            Log.i("CheapestAirRoute", "The cheapest air route is the flight from " +
+                    "${cheapestAirRoute?.from} to ${cheapestAirRoute?.to} and its cost is " +
+                    "${cheapestAirRoute?.baseCost?.currency} ${cheapestAirRoute?.baseCost?.amount}")
+        }
         viewModel.fetchBsAsRoutes()
+        viewModel.getCheapestAirRoute()
     }
 
 }
