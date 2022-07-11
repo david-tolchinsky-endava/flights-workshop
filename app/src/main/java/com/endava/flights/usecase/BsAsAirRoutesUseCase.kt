@@ -4,9 +4,9 @@ import com.endava.flights.datasource.AirRoutesRepositoryImpl
 import com.endava.flights.model.AirRoute
 
 open class BsAsAirRoutesUseCase(
-    private val repository: AirRoutesRepositoryImpl = AirRoutesRepositoryImpl()
+    private val airRouteRepository: AirRoutesRepositoryImpl = AirRoutesRepositoryImpl()
 ) {
     open suspend operator fun invoke(): List<AirRoute> {
-        return repository.getAirRoutes(from = "Buenos Aires", to = "")
+        return airRouteRepository.getAirRoutes(from = "Buenos Aires", to = "")
     }
 }
