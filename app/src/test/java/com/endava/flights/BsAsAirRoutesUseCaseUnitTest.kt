@@ -11,7 +11,7 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class BsAsAirRoutesUseCaseUnitTest {
     val bsAsAirRoutesUseCase = BsAsAirRoutesUseCase(
-        repository = AirRoutesRepositoryImpl(Dispatchers.IO)
+        airRouteRepository = AirRoutesRepositoryImpl(Dispatchers.IO)
     )
 
     @Test

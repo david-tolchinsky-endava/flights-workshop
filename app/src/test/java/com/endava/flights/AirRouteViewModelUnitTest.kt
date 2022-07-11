@@ -27,7 +27,7 @@ class AirRouteViewModelUnitTest {
     fun setup() {
         airRouteViewModel = AirRouteViewModel(
             MockBsAsAirRouteUseCase(),
-            MockCheapestAirRoute()
+            MockCheapestAirRouteUseCase()
         )
     }
 
@@ -63,7 +63,7 @@ class MockBsAsAirRouteUseCase: BsAsAirRoutesUseCase() {
     }
 }
 
-class MockCheapestAirRoute: CheapestRouteUseCase() {
+class MockCheapestAirRouteUseCase: CheapestRouteUseCase() {
     override suspend fun invoke(): AirRoute {
         return AirRoute(
             "EZE-SCL",
