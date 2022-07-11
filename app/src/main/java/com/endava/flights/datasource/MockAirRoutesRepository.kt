@@ -18,4 +18,8 @@ class MockAirRoutesRepository : AirRoutesRepository {
     override suspend fun getAirRoutes(from: String, to: String): List<AirRoute> {
         return listOf(MADRID, MIAMI, NEW_YORK, CALI, SANTIAGO, RIO, DF)
     }
+
+    override suspend fun getAllRoutes(): List<AirRoute> {
+        return getAirRoutes("", "")
+    }
 }

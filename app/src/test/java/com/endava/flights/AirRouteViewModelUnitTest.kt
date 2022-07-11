@@ -3,8 +3,8 @@ package com.endava.flights
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.endava.flights.model.AirRoute
 import com.endava.flights.model.Money
-import com.endava.flights.usecase.BsAsRoutesUseCase
-import com.endava.flights.viewmodel.RouteViewModel
+import com.endava.flights.usecase.BsAsAirRoutesUseCase
+import com.endava.flights.viewmodel.AirRouteViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -13,8 +13,8 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class RouteViewModelUnitTest {
-    private var routeViewModel: RouteViewModel? = null
+class AirRouteViewModelUnitTest {
+    private var airRouteViewModel: AirRouteViewModel? = null
 
     @get:Rule
     var coroutineTestRule = MainCoroutineTestRule()
@@ -24,17 +24,17 @@ class RouteViewModelUnitTest {
 
     @Before
     fun setup() {
-        routeViewModel = RouteViewModel(MockBsAsRouteUseCase())
+        airRouteViewModel = AirRouteViewModel(MockBsAsAirRouteUseCase())
     }
 
     @Test
     fun fetchBsAsRoutesShouldStoreFiveRoutesInLiveDataTest() = runTest {
-        routeViewModel?.fetchBsAsRoutes()
-        assertEquals(5, routeViewModel?.bsAsRoutesLD?.value?.size)
+        airRouteViewModel?.fetchBsAsRoutes()
+        assertEquals(5, airRouteViewModel?.bsAsRoutesLD?.value?.size)
     }
 }
 
-class MockBsAsRouteUseCase: BsAsRoutesUseCase() {
+class MockBsAsAirRouteUseCase: BsAsAirRoutesUseCase() {
     override suspend operator fun invoke(): List<AirRoute> {
         return listOf(
             AirRoute("EZE-MAD", "Buenos Aires", "Madrid", Money(1900, "USD")),

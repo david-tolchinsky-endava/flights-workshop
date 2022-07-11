@@ -29,4 +29,8 @@ class AirRoutesRepositoryImpl(
         }
         return airRouteResult
     }
+
+    override suspend fun getAllRoutes(): List<AirRoute> {
+        return getAirRoutes("", "")
+    }
 }

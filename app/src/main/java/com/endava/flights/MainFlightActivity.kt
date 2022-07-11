@@ -3,7 +3,7 @@ package com.endava.flights
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
-import com.endava.flights.viewmodel.RouteViewModel
+import com.endava.flights.viewmodel.AirRouteViewModel
 
 /**
  *
@@ -22,14 +22,14 @@ import com.endava.flights.viewmodel.RouteViewModel
 class MainFlightActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val viewModel = RouteViewModel()
-        viewModel.bsAsRoutesLD.observe(this) {
-            it?.forEach {airRoute ->
+        super.onCreate(savedInstanceState)
+        val viewModel = AirRouteViewModel()
+        viewModel.bsAsRoutesLD.observe(this) { airRouteList ->
+            airRouteList?.forEach {airRoute ->
                 Log.i("BsAsRoutes", "${airRoute.from} -> ${airRoute.to}")
             }
         }
         viewModel.fetchBsAsRoutes()
-        super.onCreate(savedInstanceState)
     }
 
 }
