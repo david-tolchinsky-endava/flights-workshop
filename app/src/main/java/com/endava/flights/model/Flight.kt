@@ -1,12 +1,12 @@
 package com.endava.flights.model
 
-import java.util.*
+import java.time.LocalDateTime
 
 data class Flight(
     val code: String,
     val airRoute: AirRoute,
     val airplane: Airplane,
     val services: List<Service>,
-    val departureDate : Date,
-    val arriveDate: Date
+    val departureDate : LocalDateTime,
+    val arriveDate: LocalDateTime
 )

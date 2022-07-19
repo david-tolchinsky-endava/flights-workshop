@@ -2,8 +2,13 @@ package com.endava.flights.datasource
 
 import com.endava.flights.model.AirRoute
 import com.endava.flights.model.Money
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class MockAirRoutesRepository : AirRoutesRepository {
+class AirRoutesRepositoryImpl(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+): AirRoutesRepository {
 
     companion object {
         val MADRID = AirRoute("EZE-MAD", "Buenos Aires", "Madrid", Money(1900, "USD"))
@@ -16,7 +21,13 @@ class MockAirRoutesRepository : AirRoutesRepository {
     }
 
     override suspend fun getAirRoutes(from: String, to: String): List<AirRoute> {
-        return listOf(MADRID, MIAMI, NEW_YORK, CALI, SANTIAGO, RIO, DF)
+        val airRouteResult = withContext(dispatcher) {
+            var airRoutes = listOf(MADRID, MIAMI, NEW_YORK, CALI, SANTIAGO, RIO, DF)
+            if (from != "") airRoutes = airRoutes.filter { airRoute -> airRoute.from == from }
+            if (to != "") airRoutes = airRoutes.filter { airRoute -> airRoute.to == to }
+            airRoutes
+        }
+        return airRouteResult
     }
 
     override suspend fun getAllRoutes(): List<AirRoute> {
