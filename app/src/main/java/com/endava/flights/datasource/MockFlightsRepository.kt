@@ -9,10 +9,7 @@ import com.endava.flights.datasource.MockAirplaneRepository.Companion.BOEING_737
 import com.endava.flights.datasource.MockAirplaneRepository.Companion.BOEING_787
 import com.endava.flights.model.Flight
 import com.endava.flights.model.Service
-import java.time.Duration
-import java.time.Instant
-import java.time.Period
-import java.util.*
+import java.time.LocalDateTime
 
 class MockFlightsRepository : FlightsRepository {
 
@@ -22,37 +19,35 @@ class MockFlightsRepository : FlightsRepository {
                 "ARG1325",
                 MADRID,
                 AIRBUS_A330,
-                listOf(Service.Tourist(), Service.Executive()),
-                Date.from(Instant.now() + Period.ofDays(10)),
-                Date.from(
-                    Instant.now() + Period.ofDays(10) + Duration.ofHours(12)
-                )
+                listOf(Service.Tourist, Service.Executive),
+                LocalDateTime.now().plusDays(10),
+                LocalDateTime.now().plusDays(10).plusHours(12)
+
             ),
             Flight(
                 "AM404",
                 NEW_YORK,
                 BOEING_737,
-                listOf(Service.Tourist(), Service.Executive(), Service.First()),
-                Date.from(Instant.now() + Period.ofDays(1)),
-                Date.from(Instant.now() + Period.ofDays(1) + Duration.ofHours(6))
+                listOf(Service.Tourist, Service.Executive, Service.First),
+                LocalDateTime.now().plusDays(1),
+                LocalDateTime.now().plusDays(1).plusHours(6)
             ),
             Flight(
                 "CM323",
                 CALI,
                 BOEING_737,
-                listOf(Service.Tourist()),
-                Date.from(Instant.now() + Period.ofDays(2)),
-                Date.from(Instant.now() + Period.ofDays(2) + Duration.ofHours(2))
+                listOf(Service.Tourist),
+                LocalDateTime.now().plusDays(2),
+                LocalDateTime.now().plusDays(2).plusHours(2)
             ),
             Flight(
                 "UC8494",
                 SANTIAGO,
                 BOEING_787,
-                listOf(Service.Tourist(), Service.Executive(), Service.First()),
-                Date.from(Instant.now() + Period.ofDays(5)),
-                Date.from(Instant.now() + Period.ofDays(5) + Duration.ofHours(2))
+                listOf(Service.Tourist, Service.Executive, Service.First),
+                LocalDateTime.now().plusDays(5),
+                LocalDateTime.now().plusDays(5).plusHours(2)
             )
-
         )
     }
 }

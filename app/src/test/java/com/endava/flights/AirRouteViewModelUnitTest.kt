@@ -28,7 +28,7 @@ class AirRouteViewModelUnitTest {
     @Test
     fun fetchBsAsRoutesShouldStoreFiveRoutesInLiveDataTest() = runTest {
         airRouteViewModel.fetchBsAsRoutes()
-        assertEquals(5, airRouteViewModel.bsAsRoutesLD.value?.size)
+        assertEquals(5, airRouteViewModel.bsAsRoutes.value?.size)
     }
 
     @Test
@@ -42,7 +42,7 @@ class AirRouteViewModelUnitTest {
         airRouteViewModel.getCheapestAirRoute()
         assertEquals(
             expectedCheapestAirRoute,
-            airRouteViewModel.cheapestRouteLD.value)
+            airRouteViewModel.cheapestRoute.value)
     }
 }
 

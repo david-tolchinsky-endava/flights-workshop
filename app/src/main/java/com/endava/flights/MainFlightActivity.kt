@@ -24,18 +24,24 @@ class MainFlightActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = AirRouteViewModel()
-        viewModel.bsAsRoutesLD.observe(this) { airRouteList ->
+        viewModel.bsAsRoutes.observe(this) { airRouteList ->
             airRouteList?.forEach {airRoute ->
                 Log.i("BsAsRoutes", "${airRoute.from} -> ${airRoute.to}")
             }
         }
-        viewModel.cheapestRouteLD.observe(this) { cheapestAirRoute ->
+        viewModel.cheapestRoute.observe(this) { cheapestAirRoute ->
             Log.i("CheapestAirRoute", "The cheapest air route is the flight from " +
                     "${cheapestAirRoute?.from} to ${cheapestAirRoute?.to} and its cost is " +
                     "${cheapestAirRoute?.baseCost?.currency} ${cheapestAirRoute?.baseCost?.amount}")
         }
+        viewModel.filteredFlightCodes.observe(this) { codes ->
+            codes?.forEach { code ->
+                Log.i("PopularFlight", "Codes: $code")
+            }
+        }
         viewModel.fetchBsAsRoutes()
         viewModel.getCheapestAirRoute()
-    }
+        viewModel.getFilteredFlightCodes()
 
+    }
 }
