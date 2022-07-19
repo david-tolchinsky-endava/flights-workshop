@@ -13,13 +13,6 @@ class FilteredFlightUseCase(
             .filter { flight ->
                 flight.services.containsAll( services)
             }
-//            .filter { flight ->
-//                services.all { aGivenService ->
-//                    flight.services.any { flightService ->
-//                        flightService == aGivenService
-//                    }
-//                }
-//            }
             .map { flight -> flight.code }
     }
 }

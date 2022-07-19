@@ -1,4 +1,4 @@
-package com.endava.flights
+package com.endava.flights.usecase
 
 import com.endava.flights.datasource.AirRoutesRepositoryImpl
 import com.endava.flights.usecase.BsAsAirRoutesUseCase
