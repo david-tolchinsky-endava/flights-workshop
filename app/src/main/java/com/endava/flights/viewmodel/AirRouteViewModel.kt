@@ -8,13 +8,13 @@ import com.endava.flights.model.AirRoute
 import com.endava.flights.model.Service
 import com.endava.flights.usecase.BsAsAirRoutesUseCase
 import com.endava.flights.usecase.CheapestRouteUseCase
-import com.endava.flights.usecase.FilteredFlightUseCase
+import com.endava.flights.usecase.FilterFlightUseCase
 import kotlinx.coroutines.launch
 
 class AirRouteViewModel(
     val bsAsRouteUseCase: BsAsAirRoutesUseCase = BsAsAirRoutesUseCase(),
     val cheapestRouteUseCase: CheapestRouteUseCase = CheapestRouteUseCase(),
-    val filteredFlightsUseCase: FilteredFlightUseCase = FilteredFlightUseCase()
+    val filterFlightsUseCase: FilterFlightUseCase = FilterFlightUseCase()
 ): ViewModel() {
     private val _bsAsRoutes = MutableLiveData<List<AirRoute>?>(listOf())
     val bsAsRoutes = _bsAsRoutes as LiveData<List<AirRoute>?>
@@ -22,8 +22,8 @@ class AirRouteViewModel(
     private val _cheapestRoute: MutableLiveData<AirRoute?> = MutableLiveData<AirRoute?>()
     val cheapestRoute = _cheapestRoute as LiveData<AirRoute?>
 
-    private val _filteredFlightCodes = MutableLiveData<List<String>?>()
-    val filteredFlightCodes = _filteredFlightCodes as LiveData<List<String>?>
+    private val _filterFlightCodes = MutableLiveData<List<String>?>()
+    val filterFlightCodes = _filterFlightCodes as LiveData<List<String>?>
 
     fun fetchBsAsRoutes() {
         viewModelScope.launch {
@@ -39,7 +39,7 @@ class AirRouteViewModel(
 
     fun getFilteredFlightCodes() {
         viewModelScope.launch {
-            _filteredFlightCodes.value = filteredFlightsUseCase(listOf(
+            _filterFlightCodes.value = filterFlightsUseCase(listOf(
                 Service.Tourist,
                 Service.Executive
             ))

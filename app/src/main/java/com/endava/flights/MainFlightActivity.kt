@@ -34,7 +34,7 @@ class MainFlightActivity : FragmentActivity() {
                     "${cheapestAirRoute?.from} to ${cheapestAirRoute?.to} and its cost is " +
                     "${cheapestAirRoute?.baseCost?.currency} ${cheapestAirRoute?.baseCost?.amount}")
         }
-        viewModel.filteredFlightCodes.observe(this) { codes ->
+        viewModel.filterFlightCodes.observe(this) { codes ->
             codes?.forEach { code ->
                 Log.i("PopularFlight", "Codes: $code")
             }

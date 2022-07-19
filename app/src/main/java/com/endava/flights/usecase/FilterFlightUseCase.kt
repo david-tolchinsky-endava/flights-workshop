@@ -4,10 +4,10 @@ import com.endava.flights.datasource.FlightsRepository
 import com.endava.flights.datasource.MockFlightsRepository
 import com.endava.flights.model.Service
 
-class FilteredFlightUseCase(
+open class FilterFlightUseCase(
     private val flightsRepository: FlightsRepository = MockFlightsRepository(),
 ) {
-    suspend operator fun invoke(services: List<Service>): List<String> {
+    open suspend operator fun invoke(services: List<Service>): List<String> {
         return flightsRepository
             .getFlights()
             .filter { flight ->

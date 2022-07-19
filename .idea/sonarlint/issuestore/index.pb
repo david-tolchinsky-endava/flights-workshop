@@ -16,8 +16,6 @@ q
 Aapp/src/test/java/com/endava/flights/AirRouteViewModelUnitTest.kt,2\9\29055c8846da186301fb32ba08cbf5f95db7684d
 k
 ;app/src/main/java/com/endava/flights/model/AirplaneModel.kt,d\9\d9ecd506e1f829cf754d5676e6692ba538bb8666
-b
-2app/src/main/java/com/endava/flights/model/Seat.kt,f\e\fe68954805e7a2b0270798aefa739f7539d1c111
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
