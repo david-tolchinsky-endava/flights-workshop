@@ -42,6 +42,5 @@ class MainFlightActivity : FragmentActivity() {
         viewModel.fetchBsAsRoutes()
         viewModel.getCheapestAirRoute()
         viewModel.getFilteredFlightCodes()
-
     }
 }
