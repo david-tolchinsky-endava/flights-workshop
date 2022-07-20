@@ -7,6 +7,7 @@ import com.endava.flights.model.AirplaneModel
 import com.endava.flights.model.AirplaneState
 import com.endava.flights.model.Seat
 import java.time.Instant
+import java.time.LocalDateTime
 import java.time.Period
 import java.util.*
 
@@ -76,8 +77,8 @@ class MockAirplaneRepository : AirplaneRepository {
             1,
             AirplaneModel("Airbus A350-941"),
             AirplaneState.Available(
-                Date.from(Instant.now()),
-                Date.from(Instant.now() + Period.ofMonths(2))
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMonths(3)
             ),
             SEATS
         )
@@ -86,8 +87,8 @@ class MockAirplaneRepository : AirplaneRepository {
             2,
             AirplaneModel("Boeing 787-9 Dreamliner"),
             AirplaneState.Available(
-                Date.from(Instant.now()),
-                Date.from(Instant.now() + Period.ofMonths(3))
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMonths(3)
             ),
             SEATS
         )
@@ -96,8 +97,8 @@ class MockAirplaneRepository : AirplaneRepository {
             3,
             AirplaneModel("Airbus A330-202"),
             AirplaneState.Available(
-                Date.from(Instant.now()),
-                Date.from(Instant.now() + Period.ofMonths(6))
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMonths(6)
             ),
             SEATS
         )
@@ -106,8 +107,8 @@ class MockAirplaneRepository : AirplaneRepository {
             3,
             AirplaneModel("Boeing 737-8EH"),
             AirplaneState.Available(
-                Date.from(Instant.now()),
-                Date.from(Instant.now() + Period.ofMonths(12))
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMonths(3)
             ),
             SEATS
         )

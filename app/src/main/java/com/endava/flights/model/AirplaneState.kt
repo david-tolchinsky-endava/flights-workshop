@@ -1,10 +1,11 @@
 package com.endava.flights.model
 
+import java.time.LocalDateTime
 import java.util.*
 
-sealed class AirplaneState(val since: Date) {
-    class Available(since: Date, val nextControl: Date) : AirplaneState(since)
-    class Maintenance(since : Date) : AirplaneState(since)
-    class OutOfService(since : Date) : AirplaneState(since)
+sealed class AirplaneState(val since: LocalDateTime) {
+    class Available(since: LocalDateTime, val nextControl: LocalDateTime) : AirplaneState(since)
+    class Maintenance(since : LocalDateTime) : AirplaneState(since)
+    class OutOfService(since : LocalDateTime) : AirplaneState(since)
 }
 
