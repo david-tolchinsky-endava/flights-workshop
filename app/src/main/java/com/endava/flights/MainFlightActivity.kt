@@ -1,6 +1,18 @@
 package com.endava.flights
 
+import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.viewModelScope
+import com.endava.flights.model.Service
+import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.Month
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  *
@@ -16,7 +28,13 @@ import androidx.fragment.app.FragmentActivity
  * Bonus track: Think one use case as a challenge for your partner.
  *
  */
-class MainFlightActivity : FragmentActivity() {
+class MainFlightActivity(private var viewModel : MainFlightViewModel = MainFlightViewModel()) : FragmentActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        viewModel.viewModelScope.launch {
+            Log.d("cheapestCodes",viewModel.getCheapestFlight(listOf(Service.Tourist)).toString())
+       }
+    }
 }
